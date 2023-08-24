@@ -6,7 +6,7 @@ const Button = () => {
         setCount(prev => prev+=1)
     }
     return <>
-    external app
+    external app from vercel
         <button onClick={handleCount}>count: {count}</button>
 
     </>
