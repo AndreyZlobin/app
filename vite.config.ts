@@ -8,9 +8,10 @@ export default defineConfig({
       federation({
       name: 'remote-app',
       filename: 'remoteEntry.js',
-      // Modules to expose
       exposes: {
         './Button': './src/components/Button.tsx',
+        './Header': './src/components/Header.tsx',
+        './Footer': './src/components/Footer.tsx',
       },
       shared: ['react','react-dom']
     }),
