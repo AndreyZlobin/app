@@ -1,4 +1,4 @@
-import { defineConfig, Plugin } from 'vite'
+import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import federation from "@originjs/vite-plugin-federation";
 import {dependencies} from './package.json'
@@ -39,14 +39,14 @@ export default defineConfig({
           },
       shared: dependencies
     }),
-      federation({
-          name: 'remote-app2',
-          filename: 'remoteEntry2.js',
-          exposes: {
-              './Header': './src/components/Header.tsx',
-          },
-          shared: dependencies
-      }),
+      // federation({
+      //     name: 'remote-app2',
+      //     filename: 'remoteEntry2.js',
+      //     exposes: {
+      //         './Header': './src/components/Header.tsx',
+      //     },
+      //     shared: dependencies
+      // }),
   ],
   build: {
     modulePreload: false,
