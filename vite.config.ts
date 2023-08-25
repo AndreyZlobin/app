@@ -33,12 +33,8 @@ export default defineConfig({
       CreateFederation({
           name: 'AuthModal',
           filename: 'remoteEntry.js',
-          exposes: {
-            './AuthModal': './src/remote/auth-modal/index.ts',
-            './Button': './src/components/Button.tsx',
-            './Header': './src/components/Header.tsx',
-            './Footer': './src/components/Footer.tsx',
-        }
+          exposes,
+          shared: dependencies
       })
   ],
   build: {
