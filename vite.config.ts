@@ -35,7 +35,6 @@ export default defineConfig({
           exposes: {
             './AuthModal': './src/remote/auth-modal/index.ts',
             './Button': './src/components/Button.tsx',
-            './Header': './src/components/Header.tsx',
             './Footer': './src/components/Footer.tsx',
           },
       shared: dependencies
@@ -44,10 +43,7 @@ export default defineConfig({
           name: 'remote-app2',
           filename: 'remoteEntry2.js',
           exposes: {
-              './AuthModal': './src/remote/auth-modal/index.ts',
-              './Button': './src/components/Button.tsx',
               './Header': './src/components/Header.tsx',
-              './Footer': './src/components/Footer.tsx',
           },
           shared: dependencies
       }),
