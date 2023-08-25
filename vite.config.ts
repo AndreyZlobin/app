@@ -1,39 +1,45 @@
-import { defineConfig } from 'vite'
+import { defineConfig, Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
-import federation from "@originjs/vite-plugin-federation";
+import federation, {VitePluginFederationOptions} from "@originjs/vite-plugin-federation";
 import {dependencies} from './package.json'
 //
-// type FederationManifest = Record<string, {
-//     name: string;
-//     filename: string;
-//     exposes: Record<string, string>
-// }>
+       const  exposes =  {
+            './AuthModal': './src/remote/auth-modal/index.ts',
+            './Button': './src/components/Button.tsx',
+            './Header': './src/components/Header.tsx',
+            './Footer': './src/components/Footer.tsx',
+        }
 
-// const manifest: FederationManifest = {
-//     app: {
-//         name: 'remote-app',
-//         filename: 'remoteEntry.js',
-//         exposes: {
-//             './AuthModal': './src/remote/auth-modal/index.ts',
-//             './Button': './src/components/Button.tsx',
-//             './Header': './src/components/Header.tsx',
-//             './Footer': './src/components/Footer.tsx',
-//         }
-//     }
-// }
+        const CreateFederation = (options: VitePluginFederationOptions): Plugin => {
+            const fed =  federation(options)
+            console.log(fed)
+            const manifest = {
+                [options.name]: `{remote}/${options.filename}`
+            }
+            console.log(manifest)
+            return {
+                name: 'auto-exposes-plugin',
+                ...fed,
+                buildEnd(){
+                    const manifest = {
+                    [options.name]: `{remote}/${options.filename}`
+                }
+                    console.log(manifest)
+                }
+            };
+        }
 export default defineConfig({
   plugins: [react(),
-      federation({
-          name: 'remote-app',
+      CreateFederation({
+          name: 'AuthModal',
           filename: 'remoteEntry.js',
           exposes: {
             './AuthModal': './src/remote/auth-modal/index.ts',
             './Button': './src/components/Button.tsx',
-              './Header': './src/components/Header.tsx',
+            './Header': './src/components/Header.tsx',
             './Footer': './src/components/Footer.tsx',
-          },
-      shared: dependencies
-    })
+        }
+      })
   ],
   build: {
     modulePreload: false,
