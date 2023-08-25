@@ -39,14 +39,14 @@ export default defineConfig({
           },
       shared: dependencies
     }),
-      // federation({
-      //     name: 'remote-app2',
-      //     filename: 'remoteEntry2.js',
-      //     exposes: {
-      //         './Header': './src/components/Header.tsx',
-      //     },
-      //     shared: dependencies
-      // }),
+      federation({
+          name: 'remote-app2',
+          filename: 'remoteEntry2.js',
+          exposes: {
+              './Header': './src/components/Header.tsx',
+          },
+          shared: dependencies
+      }),
   ],
   build: {
     modulePreload: false,
