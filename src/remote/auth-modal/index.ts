@@ -1,0 +1,1 @@
+export { AuthModal as default } from './auth-modal.tsx'
