@@ -1,16 +1,17 @@
-import {useState} from "react";
+import {memo, useCallback, useState} from "react";
 
 console.log(useState)
-const Button = () => {
-    // const [count, setCount] = useState(1)
-    // const handleCount = () => {
-    //     setCount(prev => prev+=1)
-    // }
-    return <>
+const Button = memo(() => {
+    const [count, setCount] = useState(1)
+    const handleCount = useCallback(() => {
+        setCount(prev => prev+=1)
+    }, [])
+    console.log(count)
+    return <div>
     external app from vercel
-        {/*<button onClick={handleCount}>count: {count}</button>*/}
-<button>sdsdsdsd</button>
-    </>
-}
+        <button onClick={handleCount}>count: {count}</button>
+{/*<button>sdsdsdsd</button>*/}
+    </div>
+})
 
 export default Button;
