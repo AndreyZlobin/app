@@ -10,10 +10,8 @@ import {CreateFederation} from "./lib/create-federation";
             './Footer': './src/components/Footer.tsx',
         }
 
-import { reactReplacements } from '@softarc/native-federation-esbuild/src/lib/react-replacements';
 export default defineConfig(async ({command}) => {
     console.log(command)
-    console.log(reactReplacements.dev)
     return {
 
         plugins: [
