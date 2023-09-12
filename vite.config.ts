@@ -1,6 +1,5 @@
-import { defineConfig, Plugin } from 'vite'
+import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-// import federation, {VitePluginFederationOptions} from "@originjs/vite-plugin-federation";
 import {dependencies} from './package.json'
 import {CreateFederation} from "./lib/create-federation";
        const  exposes =  {
