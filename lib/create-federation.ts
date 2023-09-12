@@ -1,4 +1,5 @@
-import federation, {VitePluginFederationOptions} from "@originjs/vite-plugin-federation";
+// import federation, {VitePluginFederationOptions} from "@originjs/vite-plugin-federation";
+import federation, {VitePluginFederationOptions} from "vite-plugin-federation-fix";
 import {Plugin} from "vite";
 import {writeFileSync} from 'fs';
 import {resolve} from 'path';

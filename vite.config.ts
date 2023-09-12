@@ -23,14 +23,14 @@ export default defineConfig(async ({command}) => {
                 // "@emotion/react": "11.11.1",
                 // "@emotion/styled": "11.11.0",
                 // "@mui/joy": "5.0.0-beta.3",
-                "react": "18.2.0",
-                "react-dom": "18.2.0"
+                    "react": "18.2.0",
+                    "react-dom": "18.2.0"
                 }
             })
         ],
         build: {
             modulePreload: false,
-            target: "esnext",
+            target: 'esnext',
             minify: false,
             cssCodeSplit: false,
         },
