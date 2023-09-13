@@ -20,14 +20,14 @@ export default defineConfig(async ({}) => {
                 name: 'dynamic-remote',
                 filename: 'remoteEntry.js',
                 exposes,
-                // shared: {
-                //     react: {
-                //         generate: false,
-                //     },
-                //     'react-dom': {
-                //         generate: false
-                //     },
-                // }
+                shared: {
+                    react: {
+                        generate: false,
+                    },
+                    'react-dom': {
+                        generate: false
+                    },
+                }
                 // shared: {
                 // "@emotion/react": "11.11.1",
                 // "@emotion/styled": "11.11.0",
@@ -41,6 +41,8 @@ export default defineConfig(async ({}) => {
                 promiseExportName: '__tla',
                 // The function to generate import names of top-level await promise in each chunk module
                 promiseImportName: (i) => {
+                    console.log(i);
+
                     return `__tla_${i}`;
                 },
             }),
