@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import {dependencies} from './package.json'
 import {CreateFederation} from "./lib/create-federation";
+import topLevelAwait from 'vite-plugin-top-level-await'
        const  exposes =  {
             './AuthModal': './src/remote/auth-modal/index.ts',
             './Button': './src/components/Button.tsx',
@@ -36,13 +37,24 @@ export default defineConfig(async ({command}) => {
                 //     "react": "18.2.0",
                 //     "react-dom": "18.2.0"
                 // }
+            }),
+            topLevelAwait({
+                // The export name of top-level await promise for each chunk module
+                promiseExportName: "__tla",
+                // The function to generate import names of top-level await promise in each chunk module
+                promiseImportName: i => `__tla_${i}`
             })
         ],
         build: {
-            modulePreload: false,
-            target: 'esnext',
-            minify: false,
+            assetsInlineLimit: 40960,
+            minify: true,
             cssCodeSplit: false,
-        },
+            sourcemap:true,
+            rollupOptions: {
+                output: {
+                    minifyInternalExports: false
+                }
+            }
+        }
     }
 })
