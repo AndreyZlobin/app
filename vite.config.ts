@@ -7,7 +7,7 @@ import {CreateFederation} from "./lib/create-federation";
             './Button': './src/components/Button.tsx',
             './Header': './src/components/Header.tsx',
             './Footer': './src/components/Footer.tsx',
-           'context': 'src/context.tsx'
+           './Context': 'src/context.tsx'
         }
 
 export default defineConfig(async ({command}) => {
