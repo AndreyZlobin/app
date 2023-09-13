@@ -19,6 +19,7 @@ export default defineConfig(async ({command}) => {
                 name: 'AuthModal',
                 filename: 'remoteEntry.js',
                 exposes,
+                shared: ['react', 'react-dom']
                 // shared: {
                 // "@emotion/react": "11.11.1",
                 // "@emotion/styled": "11.11.0",
