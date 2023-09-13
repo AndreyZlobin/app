@@ -47,10 +47,11 @@ export default defineConfig(async () => {
                     // },
                     "react":{
                         generate: true,
-                        version: dependencies.react, requiredVersion: dependencies.react
+                        // version: dependencies.react, requiredVersion: dependencies.react
                     },
                     "react-dom": {
-                        generate: true, version: dependencies["react-dom"], requiredVersion: dependencies["react-dom"]
+                        generate: true,
+                        // generate: true, version: dependencies["react-dom"], requiredVersion: dependencies["react-dom"]
                     },
                 }
             }),
