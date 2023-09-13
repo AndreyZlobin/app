@@ -12,7 +12,7 @@ import topLevelAwait from 'vite-plugin-top-level-await'
            // './sum': 'src/sum.ts'
         }
 
-export default defineConfig(async ({}) => {
+export default defineConfig(async () => {
     return {
         plugins: [
             react(),
@@ -20,43 +20,50 @@ export default defineConfig(async ({}) => {
                 name: 'dynamic-remote',
                 filename: 'remoteEntry.js',
                 exposes,
-                shared: {
-                    react: {
-                        generate: false,
-                    },
-                    'react-dom': {
-                        generate: false
-                    },
-                }
                 // shared: {
-                // "@emotion/react": "11.11.1",
-                // "@emotion/styled": "11.11.0",
-                // "@mui/joy": "5.0.0-beta.3",
+                //     react: {
+                //         generate: true,
+                //     },
+                //     'react-dom': {
+                //         generate: true
+                //     },
+                // }
+                // shared: {
+                //     "@emotion/react": "11.11.1",
+                //     "@emotion/styled": "11.11.0",
+                //     "@mui/joy": "5.0.0-beta.3",
                 //     "react": "18.2.0",
                 //     "react-dom": "18.2.0"
                 // }
+                shared: {
+                    // "@emotion/react": {
+                    //     generate: true,
+                    // },
+                    // "@emotion/styled":{
+                    //     generate: true,
+                    // },
+                    // "@mui/joy":{
+                    //     generate: true,
+                    // },
+                    "react":{
+                        generate: true,
+                        version: dependencies.react, requiredVersion: dependencies.react
+                    },
+                    "react-dom": {
+                        generate: true, version: dependencies["react-dom"], requiredVersion: dependencies["react-dom"]
+                    },
+                }
             }),
-            topLevelAwait({
-                // The export name of top-level await promise for each chunk module
-                promiseExportName: '__tla',
-                // The function to generate import names of top-level await promise in each chunk module
-                promiseImportName: (i) => {
-                    console.log(i);
-
-                    return `__tla_${i}`;
-                },
-            }),
+           // topLevelAwait({
+           //      promiseExportName: '__tla',
+           //      promiseImportName: (i) =>  `__tla_${i}`,
+           //  }),
         ],
         build: {
+            target: 'esnext',
             assetsInlineLimit: 40960,
             minify: true,
             cssCodeSplit: false,
-            sourcemap:true,
-            rollupOptions: {
-                output: {
-                    minifyInternalExports: false
-                }
-            }
         }
     }
 })
