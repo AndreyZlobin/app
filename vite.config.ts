@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 // import {dependencies} from './package.json'
 // import {CreateFederation} from "./lib/create-federation";
-// import topLevelAwait from 'vite-plugin-top-level-await'
+import topLevelAwait from 'vite-plugin-top-level-await'
 import federation from "@originjs/vite-plugin-federation";
        const  exposes =  {
             // './AuthModal': './src/remote/auth-modal/index.ts',
@@ -22,7 +22,20 @@ export default defineConfig(async () => {
                 filename: "remoteEntry.js",
                 exposes,
                 // shared: ['react','react-dom']
-            })
+                shared: {
+                    react: {
+                        generate: false
+                    },
+                    'react-dom': {
+                        generate: false
+                    },
+                    // 'react-dom': '18.2.0',
+                },
+            }),
+            topLevelAwait({
+              promiseExportName: '__tla',
+              promiseImportName: (i) => `__tla_${i}`,
+            }),
         ],
         build: {
             target: 'esnext',
